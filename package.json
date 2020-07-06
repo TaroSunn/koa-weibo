@@ -23,6 +23,8 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
-    "nodemon": "^1.19.1"
+    "mysql2": "^2.1.0",
+    "nodemon": "^1.19.1",
+    "sequelize": "^6.3.0"
   }
 }

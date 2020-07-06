@@ -46,6 +46,41 @@ const {Blog, User} = require('./model')
     ]
   })
 
-  console.log(blogListAndCount.count, blogListAndCount.rows.map(item => item.dataValues))
+  // console.log(blogListAndCount.count, blogListAndCount.rows.map(item => item.dataValues))
+
+  // 连表查询
+  const blogListWithUser = await Blog.findAndCountAll({
+    order: [
+      ['id', 'desc']
+    ],
+    include: [
+      {
+        model: User,
+        attributes: ['userName', 'nickName'],
+        where: {
+          userName: 'zhangsan'
+        }
+      }
+    ]
+  })
+  // console.log(blogListWithUser.count, blogListWithUser.rows.map(item => {
+  //   const blogVal = item.dataValues
+  //   blogVal.user = blogVal.user.dataValues
+  //   return blogVal
+  // }))
+
+  const userListWithBlog = await User.findAndCountAll({
+    attributes: ['userName', 'nickName'],
+    include: [
+      {
+        model: Blog
+      }
+    ]
+  })
+  console.log(userListWithBlog.count, userListWithBlog.rows.map(item => {
+    const userVal = item.dataValues
+    userVal.blogs = userVal.blogs.map(item => item.dataValues) 
+    return userVal
+  }))
 
 })()

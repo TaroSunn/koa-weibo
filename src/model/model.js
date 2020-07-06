@@ -14,7 +14,7 @@ const User = seq.define('user', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  nickNime: {
+  nickName: {
     type: Sequelize.STRING
   }
 })

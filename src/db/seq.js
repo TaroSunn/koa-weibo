@@ -6,7 +6,7 @@ const {MYSQL_CONF} = require('../conf/db')
 const {isProd, isTest} = require('../utils/env')
 
 
-const {host, user, password, database, dialect, host} = MYSQL_CONF
+const {host, user, password, database, dialect} = MYSQL_CONF
 
 const conf = {
   host,
